@@ -6,7 +6,7 @@ Original forked from @Dreamacro
 
 @xiaci wrote this pool, and it's improved by @Dreamacro.
 
-It's used for the common memory usage case in Go to reduce STW time in every GC round.
+It's used for the common memory usage case in Go to reduce STW time every GC round.
 
 However, it will still cause allocation in Dreamacro version, to know why, [see the description about sync.Pool](https://pkg.go.dev/sync#Pool)
 
@@ -43,3 +43,10 @@ Or more convenience
 ```
 buf.SetLen(5)
 ```
+
+## When to Use
+
+Frequently allocating large buffers case, like Proxy or HTTP Server.
+
+If you can reuse the buffer, the mempool is unnecessary even making your program slower.
+
